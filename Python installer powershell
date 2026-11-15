@@ -1,0 +1,12 @@
+powershell
+# 1. Installeer Python (versie 3.12) via de Windows Package Manager
+winget install -e --id Python.Python.3.12 --scope machine --silent --accept-package-agreements --accept-source-agreements
+
+# 2. Ververs de omgevingsvariabelen zodat 'python' en 'pip' direct werken
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+# 3. Upgrade pip en installeer ALLE benodigde packages in 1 keer
+python -m pip install --upgrade pip
+python -m pip install pyinstaller pillow imageio-ffmpeg pywin32
+
+Write-Host "✅ ALLES IS GEÏNSTALLEERD! Je kunt nu je scripts starten." -ForegroundColor Green
